@@ -14,7 +14,7 @@
 
 ### 使用开源版本编译搭建
 - 建议使用最近的 go 版本进行编译
-- 初次使用 `./tg-keyword-reply <token>` , 会将token存到数据库中(bot.db)
+- 初次使用 `./tg-keyword-reply <tg-bot-token>` , 会将token存到数据库中(bot.db)
 - 后面使用 `./tg-keyword-reply` , 无需输入token
 
 ### 回复特殊内容
@@ -30,7 +30,7 @@
 ### 使用闭源版本可执行文件搭建  
 进入 **[Release 页面](https://github.com/zu1k/tg-keyword-reply-bot/releases)** 下载最新版本可执行文件到服务器，然后进行部署       
 - 系统推荐使用： Ubuntu 18.04, glibc版本2.27
-- 初次使用 `./tg-keyword-reply tg-bot-token` , 会将token存到数据库中
+- 初次使用 `./tg-keyword-reply <tg-bot-token>` , 会将token存到数据库中(bot.db)
 - 后面使用 `./tg-keyword-reply` , 无需输入token
 
 #### 服务器选择
