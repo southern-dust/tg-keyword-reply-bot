@@ -91,10 +91,10 @@ func forwardMessage(chatid int64, msgurl string) tgbotapi.Message {
 		msgid, _ = strconv.Atoi(infos[5])
 		msgfromid, _ = strconv.ParseInt(infos[4], 10, 64)
 		forward = tgbotapi.NewForward(chatid, msgfromid, msgid)
-	} else {
+	} /*else {
 		msgid, _ = strconv.Atoi(infos[4])
 		forward = tgbotapi.NewForward2(chatid, infos[3], msgid)
-	}
+	}*/
 
 	fmt.Println(forward)
 	mmsg, err := bot.Send(forward)
