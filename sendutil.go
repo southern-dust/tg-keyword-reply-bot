@@ -104,6 +104,7 @@ func forwardMessage(chatid int64, msgurl string) tgbotapi.Message {
 	return mmsg
 }
 
+/*以秒数为单位，默认240即6分钟*/
 func deleteMessage(gid int64, mid int) {
 	time.Sleep(time.Second * 240)
 	_, _ = bot.DeleteMessage(tgbotapi.NewDeleteMessage(gid, mid))
