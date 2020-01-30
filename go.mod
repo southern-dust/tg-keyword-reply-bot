@@ -1,6 +1,6 @@
 module tg-keyword-reply-bot
 
-go 1.12
+go 1.11
 
 require (
 	github.com/go-telegram-bot-api/telegram-bot-api v4.6.4+incompatible

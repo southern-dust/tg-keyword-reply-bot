@@ -104,25 +104,26 @@ func processUpdate(update tgbotapi.Update) {
 				}
 			}
 		case "admin":
-			msg.Text = "[" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(uid) + ") 请求管理员出来打屁股\r\n\r\n" + getAdmins(gid)
+			msg.Text = "[" + NameFirstString(upmsg.From) + "](tg://user?id=" + strconv.Itoa(uid) + ") 请求管理员出来打屁股\r\n\r\n" + getAdmins(gid)
 			msg.ParseMode = "Markdown"
 			sendMessage(msg)
 			banMember(gid, uid, 30)
+
 		case "banme":
-			botme, _ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", 838289550})
+			botme, _ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", bot.Self.ID})  //fixed
 			if botme.CanRestrictMembers {
 				rand.Seed(time.Now().UnixNano())
 				sec := rand.Intn(540)+60
 				banMember(gid, uid, int64(sec))
-				msg.Text = "恭喜[" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ")获得" + strconv.Itoa(sec) + "秒的禁言礼包"
+				msg.Text = "恭喜[" + NameFirstString(upmsg.From) + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ")获得" + strconv.Itoa(sec) + "秒的禁言礼包"
 				msg.ParseMode = "Markdown"
 			} else {
 				msg.Text = "请给我禁言权限,否则无法进行游戏"
 			}
 			sendMessage(msg)
-		case "me":
+		case "getid":
 			myuser := upmsg.From
-			msg.Text = "[" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 的账号信息" +
+			msg.Text = "[" + NameFirstString(upmsg.From) + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 的账号信息" +
 				"\r\nID: " + strconv.Itoa(uid) +
 				"\r\nUseName: [" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ")" +
 				"\r\nLastName: " + myuser.LastName +
@@ -152,8 +153,8 @@ func processUpdate(update tgbotapi.Update) {
 					mem, _ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", reply_to_memid})
 					if !mem.CanSendMessages {
 						msg = tgbotapi.NewMessage(gid, "")
-						msg.Text = "[" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 禁言了 " +
-							"[" + upmsg.ReplyToMessage.From.String() + "](tg://user?id=" + strconv.Itoa(reply_to_memid) + ") "
+						msg.Text = "[" + NameFirstString(upmsg.From) + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 禁言了 " +
+							"[" + NameFirstString(upmsg.ReplyToMessage.From) + "](tg://user?id=" + strconv.Itoa(reply_to_memid) + ") "
 						msg.ParseMode = "Markdown"
 						sendMessage(msg)
 					}
@@ -164,8 +165,8 @@ func processUpdate(update tgbotapi.Update) {
 					//mem,_ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", reply_to_memid})
 					//
 					msg = tgbotapi.NewMessage(gid, "")
-					msg.Text = "[" + upmsg.From.String() + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 解禁了 " +
-						"[" + upmsg.ReplyToMessage.From.String() + "](tg://user?id=" + strconv.Itoa(reply_to_memid) + ") "
+					msg.Text = "[" + NameFirstString(upmsg.From) + "](tg://user?id=" + strconv.Itoa(upmsg.From.ID) + ") 解禁了 " +
+						"[" + NameFirstString(upmsg.ReplyToMessage.From) + "](tg://user?id=" + strconv.Itoa(reply_to_memid) + ") "
 					msg.ParseMode = "Markdown"
 					sendMessage(msg)
 				}
