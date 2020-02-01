@@ -28,6 +28,8 @@ func main() {
 }
 
 func start() {
+	addRuleFromText()
+
 	bott, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		log.Panic(err)
