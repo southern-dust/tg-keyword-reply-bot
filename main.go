@@ -64,7 +64,7 @@ func processUpdate(update tgbotapi.Update) {
 		_, _ = bot.DeleteMessage(tgbotapi.NewDeleteMessage(gid, upmsg.MessageID))
 		switch upmsg.Command() {
 		case "start", "help":
-			msg.Text = "本机器人能够自动回复特定关键词"
+			msg.Text = "本问答姬能够自动回复特定关键词"
 			sendMessage(msg)
 		case "add":
 			if checkAdmin(gid, *upmsg.From) {
@@ -112,7 +112,7 @@ func processUpdate(update tgbotapi.Update) {
 			banMember(gid, uid, 30)
 
 		case "banme":
-			botme, _ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", bot.Self.ID})  //fixed
+			botme, _ := bot.GetChatMember(tgbotapi.ChatConfigWithUser{gid, "", bot.Self.ID})
 			if botme.CanRestrictMembers {
 				rand.Seed(time.Now().UnixNano())
 				sec := rand.Intn(540)+60

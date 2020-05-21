@@ -13,8 +13,9 @@ import (
  * 发送文字消息
  */
 func sendMessage(msg tgbotapi.MessageConfig) tgbotapi.Message {
+	gid := msg.BaseChat.ChatID
 	if msg.Text == "" {
-		msg.Text = "出现错误,请联系 @veezer"
+		msg.Text = "出现错误,请联系 admin: " + getAdmins(gid)
 	}
 	mmsg, err := bot.Send(msg)
 	if err != nil {
